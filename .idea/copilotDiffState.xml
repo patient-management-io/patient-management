@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/docker-compose.yml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/docker-compose.yml" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/infrastructure/localstack-deploy-simple.sh">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/infrastructure/localstack-deploy-simple.sh" />
+              <option name="originalContent" value="#!/bin/bash&#10;&#10;set -e&#10;&#10;echo &quot;Starting LocalStack deployment...&quot;&#10;&#10;# Deploy without timeout but with more verbose output&#10;aws --endpoint-url=http://localhost:4566 cloudformation deploy \&#10;    --stack-name patient-management \&#10;    --template-file &quot;./cdk.out/localstack.template.json&quot; \&#10;    --capabilities CAPABILITY_IAM \&#10;    --no-fail-on-empty-changeset \&#10;    --region us-east-1 \&#10;    --debug 2&gt;&amp;1 | head -50  # Show first 50 lines of debug output&#10;&#10;echo &quot;Checking deployment status...&quot;&#10;aws --endpoint-url=http://localhost:4566 cloudformation describe-stacks \&#10;    --stack-name patient-management \&#10;    --region us-east-1 || echo &quot;Stack doesn't exist yet&quot;&#10;&#10;echo &quot;Deployment completed!&quot;&#10;" />
+              <option name="updatedContent" value="#!/bin/bash&#10;&#10;set -e&#10;&#10;# Disable AWS CLI pager to prevent commands from opening in a separate viewer&#10;export AWS_PAGER=&quot;&quot;&#10;&#10;echo &quot;Starting LocalStack deployment...&quot;&#10;&#10;# Deploy the CloudFormation stack&#10;aws --endpoint-url=http://localhost:4566 cloudformation deploy \&#10;    --stack-name patient-management \&#10;    --template-file &quot;./cdk.out/localstack.template.json&quot; \&#10;    --capabilities CAPABILITY_IAM \&#10;    --no-fail-on-empty-changeset \&#10;    --region us-east-1 \&#10;    --no-paginate&#10;&#10;echo &quot;Checking deployment status...&quot;&#10;aws --endpoint-url=http://localhost:4566 cloudformation describe-stacks \&#10;    --stack-name patient-management \&#10;    --region us-east-1 \&#10;    --no-paginate&#10;&#10;echo &quot;Attempting to get load balancer DNS name...&quot;&#10;aws --endpoint-url=http://localhost:4566 elbv2 describe-load-balancers \&#10;    --region us-east-1 \&#10;    --query &quot;LoadBalancers[0].DNSName&quot; \&#10;    --output text \&#10;    --no-paginate || echo &quot;No load balancers found&quot;&#10;&#10;echo &quot;Deployment completed!&quot;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/infrastructure/test-template.json">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/infrastructure/test-template.json" />
+              <option name="updatedContent" value="{&#10;  &quot;AWSTemplateFormatVersion&quot;: &quot;2010-09-09&quot;,&#10;  &quot;Description&quot;: &quot;Simple test stack for LocalStack&quot;,&#10;  &quot;Resources&quot;: {&#10;    &quot;TestS3Bucket&quot;: {&#10;      &quot;Type&quot;: &quot;AWS::S3::Bucket&quot;,&#10;      &quot;Properties&quot;: {&#10;        &quot;BucketName&quot;: &quot;patient-management-test-bucket&quot;&#10;      }&#10;    }&#10;  },&#10;  &quot;Outputs&quot;: {&#10;    &quot;BucketName&quot;: {&#10;      &quot;Description&quot;: &quot;Name of the S3 bucket&quot;,&#10;      &quot;Value&quot;: {&#10;        &quot;Ref&quot;: &quot;TestS3Bucket&quot;&#10;      }&#10;    }&#10;  }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/patient-service/src/main/resources/application-docker.yml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/patient-service/src/main/resources/application-docker.yml" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
