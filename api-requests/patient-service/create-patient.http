@@ -1,0 +1,14 @@
+### Create new patient entity
+POST http://lb-5126679e.elb.localhost.localstack.cloud:4004/api/patients
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Connor Burge",
+  "email": "test13@example.com",
+  "address": "123 main street",
+  "dateOfBirth": "1995-09-09",
+  "registeredDate": "2025-08-10"
+}
+
+###

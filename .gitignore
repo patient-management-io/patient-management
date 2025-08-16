@@ -1,0 +1,23 @@
+# Root ignore for patient-management aggregate repo
+
+# IDE
+.idea/
+*.iml
+
+# Build outputs
+**/target/
+**/build/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Env / secrets
+.env
+.env.*
+
+# Node (if any future frontend)
+node_modules/
+

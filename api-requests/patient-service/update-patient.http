@@ -1,0 +1,11 @@
+### Update patient entity
+PUT http://localhost:4004/api/patients/8cbd7a41-ee59-4577-a0b1-ade4b53aa2d0
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Connor Burge",
+  "email": "john.doe@example.com",
+  "address": "123 main street",
+  "dateOfBirth": "1995-09-09"
+}
