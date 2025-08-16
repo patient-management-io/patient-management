@@ -1,7 +1,6 @@
 # Root ignore for patient-management aggregate repo
 
 # IDE
-.idea/
 *.iml
 
 # Build outputs
